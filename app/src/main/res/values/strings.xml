@@ -3,4 +3,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="basicPayTitle">Basic Pay</string>
+    <string-array name="basicPay_array">
+        <item>Monthly</item>
+        <item>Semi-Monthly</item>
+    </string-array>
 </resources>

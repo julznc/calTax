@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/basicPayTitle"
         android:id="@+id/BasicPay"
         android:layout_alignParentLeft="false"
@@ -19,5 +19,33 @@
         android:textStyle="bold"
         android:typeface="sans"
         android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Period:  "
+        android:id="@+id/textView"
+        android:textColor="#ffffffff"
+        android:layout_alignTop="@+id/payChoices"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/payChoices"
+        android:layout_toStartOf="@+id/payChoices"
+        android:gravity="center_vertical" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/payChoices"
+        android:layout_marginTop="35dp"
+        android:spinnerMode="dialog"
+        android:popupBackground="#75ffffff"
+        android:background="#ffffffff"
+        android:layout_below="@+id/BasicPay"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/BasicPay"
+        android:layout_alignStart="@+id/BasicPay" />
 
 </RelativeLayout>
