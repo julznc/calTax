@@ -2,6 +2,7 @@ package com.ymsoftlabs.caltax;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -53,6 +54,11 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cal_tax);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.mipmap.ic_launcher);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         // Pay Period
         Spinner payChoices = (Spinner) findViewById(R.id.payChoices);
