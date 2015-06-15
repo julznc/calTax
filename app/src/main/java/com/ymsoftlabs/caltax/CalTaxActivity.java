@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-
 public class CalTaxActivity extends ActionBarActivity implements  OnItemSelectedListener {
 
     @Override
@@ -19,6 +18,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cal_tax);
 
+        // Pay Period
         Spinner payChoices = (Spinner) findViewById(R.id.payChoices);
         ArrayAdapter<CharSequence> payAdapter = ArrayAdapter.createFromResource(this,
                 R.array.basicPay_array, android.R.layout.simple_spinner_item);
@@ -27,6 +27,16 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         payChoices.setAdapter(payAdapter);
         payChoices.setOnItemSelectedListener(this);
 
+        // Employment Type
+        Spinner employment = (Spinner) findViewById(R.id.employment);
+        ArrayAdapter<CharSequence> employmentAdapter = ArrayAdapter.createFromResource(this,
+                R.array.employment_array, android.R.layout.simple_spinner_item);
+
+        employmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        employment.setAdapter(employmentAdapter);
+        employment.setOnItemSelectedListener(this);
+
+        // Civil Status
         Spinner status = (Spinner) findViewById(R.id.status);
         ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this,
                 R.array.dependents_array, android.R.layout.simple_spinner_item);
@@ -34,6 +44,9 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         status.setAdapter(statusAdapter);
         status.setOnItemSelectedListener(this);
+
+        ContributionsManager contributionsManager = new ContributionsManager();
+        contributionsManager.philhealthContribution(23999.99, 1);
     }
 
     @Override

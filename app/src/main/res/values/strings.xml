@@ -2,7 +2,7 @@
     <string name="app_name">calTax</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="basicPayTitle">Basic Pay</string>
+    <string name="basicPayTitle">Status</string>
     <string-array name="basicPay_array">
         <item>Monthly</item>
         <item>Semi-Monthly</item>
@@ -18,5 +18,11 @@
         <item>Married w/2 Dependent</item>
         <item>Married w/3 Dependent</item>
         <item>Married w/4 Dependent</item>
+    </string-array>
+    <string-array name="employment_array">
+        <item>Employed</item>
+        <item>Self-Employed</item>
+        <item>Voluntary</item>
+        <item>OFW</item>
     </string-array>
 </resources>
