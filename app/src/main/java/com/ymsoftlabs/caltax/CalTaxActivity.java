@@ -120,7 +120,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         salaryEditTextView.addTextChangedListener(watch);
 
         dialogBuilder = new AlertDialog.Builder(CalTaxActivity.this);
-        dialogBuilder.setTitle("KalTax:");
+        dialogBuilder.setTitle("KalTax");
         dialogBuilder.setPositiveButton("Ok", null);
     }
 
@@ -139,7 +139,16 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            dialogBuilder.setMessage("Ang kalTax ay isang simpleng application na maaari " +
+                            "mong gamitin upang malaman kung magkano ang halagang maaaring nababawas sa inyong sweldo. " +
+                            "Ito ay maaari mong gamitin kahit walang free public wifi dahil hindi nito kailangan ng internet connection. " +
+                            "\n\nPaunawa: Ang mga numerong nakasaad sa kalTax ay base sa tables na inilabas ng mga government agencies at ng BIR." +
+                            "Maaaring ang mga numerong nakasaad ay hindi ang eksaktong halaga ng iyong buwis. Gayunman, sapat na itong pagtataya ng " +
+                            "kung magkano ang iyong naiaambag sa kaban ng bayan at sa allowance ng mga congressman.");
+
+            alert = dialogBuilder.create();
+            alert.show();
             return true;
         }
 
