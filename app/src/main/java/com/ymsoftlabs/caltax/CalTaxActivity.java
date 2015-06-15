@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class CalTaxActivity extends ActionBarActivity implements  OnItemSelectedListener {
 
     int paymentPeriod = 0;
@@ -122,6 +125,11 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         dialogBuilder = new AlertDialog.Builder(CalTaxActivity.this);
         dialogBuilder.setTitle("KalTax");
         dialogBuilder.setPositiveButton("Ok", null);
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     @Override
