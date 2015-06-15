@@ -12,17 +12,16 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/basicPayTitle"
         android:id="@+id/BasicPay"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:typeface="sans"
-        android:textColor="#ffffffff" />
+        android:textColor="#ffffffff"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Period:  "
         android:id="@+id/textView"
@@ -36,9 +35,9 @@
 
     <Spinner
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:id="@+id/payChoices"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:spinnerMode="dialog"
         android:popupBackground="#75ffffff"
         android:background="#ffffffff"
@@ -47,5 +46,61 @@
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/BasicPay"
         android:layout_alignStart="@+id/BasicPay" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Basic Salary:"
+        android:id="@+id/textView2"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffffff"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:background="#ffffffff"
+        android:paddingLeft="8dp"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/payChoices"
+        android:layout_alignStart="@+id/payChoices"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Status:"
+        android:id="@+id/textView3"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffffff"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/status"
+        android:spinnerMode="dialog"
+        android:popupBackground="#75ffffff"
+        android:background="#ffffffff"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/payChoices"
+        android:layout_alignStart="@+id/payChoices" />
+    />
+
 
 </RelativeLayout>

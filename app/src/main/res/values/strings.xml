@@ -7,4 +7,16 @@
         <item>Monthly</item>
         <item>Semi-Monthly</item>
     </string-array>
+    <string-array name="dependents_array">
+        <item>Single</item>
+        <item>Married</item>
+        <item>Single w/1 Dependent</item>
+        <item>Single w/2 Dependent</item>
+        <item>Single w/3 Dependent</item>
+        <item>Single w/4 Dependent</item>
+        <item>Married w/1 Dependent</item>
+        <item>Married w/2 Dependent</item>
+        <item>Married w/3 Dependent</item>
+        <item>Married w/4 Dependent</item>
+    </string-array>
 </resources>

@@ -19,13 +19,21 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cal_tax);
 
-        Spinner spinner = (Spinner) findViewById(R.id.payChoices);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        Spinner payChoices = (Spinner) findViewById(R.id.payChoices);
+        ArrayAdapter<CharSequence> payAdapter = ArrayAdapter.createFromResource(this,
                 R.array.basicPay_array, android.R.layout.simple_spinner_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        payAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        payChoices.setAdapter(payAdapter);
+        payChoices.setOnItemSelectedListener(this);
+
+        Spinner status = (Spinner) findViewById(R.id.status);
+        ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this,
+                R.array.dependents_array, android.R.layout.simple_spinner_item);
+
+        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        status.setAdapter(statusAdapter);
+        status.setOnItemSelectedListener(this);
     }
 
     @Override
