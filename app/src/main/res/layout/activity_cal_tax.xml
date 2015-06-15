@@ -114,7 +114,9 @@
             android:textSize="16sp"
             android:layout_marginTop="15dp"
             android:hint="Basic Salary"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/status"
+            android:layout_alignStart="@+id/status" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -128,7 +130,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Taxable Allowances"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/basicSalary"
+            android:layout_alignStart="@+id/basicSalary" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -142,7 +146,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Overtime Pay"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/allowance"
+            android:layout_alignStart="@+id/allowance" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -156,7 +162,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Night Differential"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/overtime"
+            android:layout_alignStart="@+id/overtime" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -170,7 +178,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Holiday Pay"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/nightDiff"
+            android:layout_alignStart="@+id/nightDiff" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -198,7 +208,9 @@
             android:textSize="16sp"
             android:layout_marginTop="15dp"
             android:hint="SSS Contribution"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/holiday"
+            android:layout_alignStart="@+id/holiday" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -212,7 +224,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Philhealth Contribution"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/sssContribution"
+            android:layout_alignStart="@+id/sssContribution" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -226,7 +240,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Pag-ibig Contribution"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/philHealth"
+            android:layout_alignStart="@+id/philHealth" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -240,7 +256,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="HMO"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/pagibig"
+            android:layout_alignStart="@+id/pagibig" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -254,7 +272,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Absences"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/hmo"
+            android:layout_alignStart="@+id/hmo" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -268,7 +288,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Tardiness"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/absences"
+            android:layout_alignStart="@+id/absences" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -282,7 +304,9 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Undertime"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/tardiness"
+            android:layout_alignStart="@+id/tardiness" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -296,16 +320,177 @@
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:hint="Tax shielded allowance"
-            android:typeface="sans" />
+            android:typeface="sans"
+            android:layout_alignLeft="@+id/undertime"
+            android:layout_alignStart="@+id/undertime" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Calculate"
             android:id="@+id/button"
+            android:onClick="calTax"
             android:layout_below="@+id/shielded"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Basic:"
+            android:id="@+id/textView4"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_above="@+id/allowance"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Taxable:"
+            android:id="@+id/textView5"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_above="@+id/overtime"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="OT Pay:"
+            android:id="@+id/textView6"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/overtime"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Night Diff:"
+            android:id="@+id/textView7"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/nightDiff"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Holiday Pay:"
+            android:id="@+id/textView8"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/holiday"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="SSS:"
+            android:id="@+id/textView9"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/sssContribution"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Philhealth:"
+            android:id="@+id/textView10"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/philHealth"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Pag-ibig:"
+            android:id="@+id/textView11"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignBottom="@+id/pagibig"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="HMO:"
+            android:id="@+id/textView12"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/hmo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Absences:"
+            android:id="@+id/textView13"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/absences"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Tardiness:"
+            android:id="@+id/textView14"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/tardiness"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Undertime:"
+            android:id="@+id/textView15"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/undertime"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Shielded:"
+            android:id="@+id/textView16"
+            android:textColor="#ffffffff"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/shielded"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         />
     </RelativeLayout>
 </ScrollView>

@@ -1,5 +1,7 @@
 package com.ymsoftlabs.caltax;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,9 +19,13 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class CalTaxActivity extends ActionBarActivity implements  OnItemSelectedListener {
 
     int paymentPeriod = 0;
-    int employment = 0;
+    int employmentType = 0;
     int civilStatus = 0;
     double salary = 0;
+
+    double sssCont = 0;
+    double phCont = 0;
+    double pgCont = 0;
 
     EditText sssEditTextView;
     EditText phEditTextView;
@@ -37,6 +43,9 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
     EditText undertimeEditTextView;
     EditText shieldedEditTextView;
 
+    AlertDialog.Builder dialogBuilder;
+    AlertDialog alert;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +61,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         payChoices.setOnItemSelectedListener(this);
 
         // Employment Type
-        Spinner employment = (Spinner) findViewById(R.id.employment);
+        final Spinner employment = (Spinner) findViewById(R.id.employment);
         ArrayAdapter<CharSequence> employmentAdapter = ArrayAdapter.createFromResource(this,
                 R.array.employment_array, android.R.layout.simple_spinner_item);
 
@@ -93,15 +102,26 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                String input = salaryEditTextView.getText().toString();
+                if (input != null && !input.isEmpty()){
+                    salary = Double.parseDouble(input);
+                    setContributions(salary, employmentType, paymentPeriod);
+                } else {
+                    salary = 0;
+                    setContributions(salary, employmentType, paymentPeriod);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         };
+
         salaryEditTextView.addTextChangedListener(watch);
+
+        dialogBuilder = new AlertDialog.Builder(CalTaxActivity.this);
+        dialogBuilder.setTitle("KalTax:");
+        dialogBuilder.setPositiveButton("Ok", null);
     }
 
     @Override
@@ -132,10 +152,10 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         if (result.equalsIgnoreCase("Monthly")) paymentPeriod = 0;
         if (result.equalsIgnoreCase("Semi-Monthly")) paymentPeriod = 1;
 
-        if (result.equalsIgnoreCase("Employed")) employment = 0;
-        if (result.equalsIgnoreCase("Self-Employed")) employment = 1;
-        if (result.equalsIgnoreCase("Voluntary")) employment = 1;
-        if (result.equalsIgnoreCase("OFW")) employment = 1;
+        if (result.equalsIgnoreCase("Employed")) employmentType = 0;
+        if (result.equalsIgnoreCase("Self-Employed")) employmentType = 1;
+        if (result.equalsIgnoreCase("Voluntary")) employmentType = 1;
+        if (result.equalsIgnoreCase("OFW")) employmentType = 1;
 
         if (result.equalsIgnoreCase("Single")) civilStatus = 0;
         if (result.equalsIgnoreCase("Married")) civilStatus = 1;
@@ -148,23 +168,95 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         if (result.equalsIgnoreCase("Married w/3 Dependent")) civilStatus = 8;
         if (result.equalsIgnoreCase("Married w/4 Dependent")) civilStatus = 9;
 
-        if (salary > 0) setContributions(salary, employment, paymentPeriod);
+        if (salary > 0) setContributions(salary, employmentType, paymentPeriod);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
-    public void setContributions(double salary, int employmentType, int payPeriod){
+    public void setContributions(double salary, int employment, int payPeriod){
 
         ContributionsManager contributionsManager = new ContributionsManager();
-        double sssContribution = contributionsManager.sssContribution(salary, employmentType, payPeriod);
-        double philhealthContribution = contributionsManager.philhealthContribution(salary, payPeriod);
-        double pagibigContribution = contributionsManager.pagIbigContribution(salary);
+        sssCont = contributionsManager.sssContribution(salary, employment, payPeriod);
+        phCont = contributionsManager.philhealthContribution(salary, payPeriod);
+        pgCont = contributionsManager.pagIbigContribution(salary);
 
-        sssEditTextView.setText("" + sssContribution);
-        phEditTextView.setText("" + philhealthContribution);
-        pagibigEditTextView.setText("" + pagibigContribution);
+        sssEditTextView.setText("" + sssCont);
+        phEditTextView.setText("" + phCont);
+        pagibigEditTextView.setText("" + pgCont);
     }
 
+    public void calTax(View view){
+        double totalIncome;
+        double deductions;
+
+        if (salary == 0) return;
+
+        double allowance = 0;
+        String taxableAllowance = taxAllowanceTextView.getText().toString();
+        if (!taxableAllowance.isEmpty()) allowance = Double.parseDouble(taxableAllowance);
+
+        double otpay = 0;
+        String ot = otPayEditTextView.getText().toString();
+        if (!ot.isEmpty()) otpay = Double.parseDouble(ot);
+
+        double nd = 0;
+        String ndiff = nightDiffEditTextView.getText().toString();
+        if (!ndiff.isEmpty()) nd = Double.parseDouble(ndiff);
+
+        double hd = 0;
+        String hdpay = holidayEditTextView.getText().toString();
+        if (!hdpay.isEmpty()) hd = Double.parseDouble(hdpay);
+
+        totalIncome = salary + allowance + otpay + nd + hd;
+
+        double ss = 0;
+        String sss = sssEditTextView.getText().toString();
+        if (!sss.isEmpty()) ss = Double.parseDouble(sss);
+
+        double ph = 0;
+        String phl = phEditTextView.getText().toString();
+        if (!phl.isEmpty()) ph = Double.parseDouble(phl);
+
+        double pg = 0;
+        String pagibig = pagibigEditTextView.getText().toString();
+        if (!pagibig.isEmpty()) pg = Double.parseDouble(pagibig);
+
+        double hmo = 0;
+        String hmoPay = hmoEditTextView.getText().toString();
+        if (!hmoPay.isEmpty()) hmo = Double.parseDouble(hmoPay);
+
+        double ab = 0;
+        String absences = absencesTextView.getText().toString();
+        if (!absences.isEmpty()) ab = Double.parseDouble(absences);
+
+        double tad = 0;
+        String tardy = tardinessTextView.getText().toString();
+        if (!tardy.isEmpty()) tad = Double.parseDouble(tardy);
+
+        double ut = 0;
+        String undT = undertimeEditTextView.getText().toString();
+        if(!undT.isEmpty()) ut = Double.parseDouble(undT);
+
+        double sh = 0;
+        String shielded = shieldedEditTextView.getText().toString();
+        if (!shielded.isEmpty()) sh = Double.parseDouble(shielded);
+
+        deductions = ss + ph + pg + hmo + ab + tad + ut + sh;
+
+        double totalTaxable = totalIncome - deductions;
+        taxBracketing calTax = new taxBracketing();
+
+        double tax = 0;
+        if (paymentPeriod == 0)
+            tax = calTax.calTaxMonthly(totalTaxable, civilStatus);
+        else
+            tax = calTax.calTaxSemiMonthly(totalTaxable, civilStatus);
+
+        dialogBuilder.setMessage("Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay: \n\n Php " + tax );
+
+        alert = dialogBuilder.create();
+        alert.show();
+    }
 }
