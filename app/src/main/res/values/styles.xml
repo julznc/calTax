@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="logo">@drawable/icon_actionbar</item>
+        <item name="android:windowBackground">@color/black_overlay</item>
         <item name="displayOptions"> useLogo|showHome </item>
 
         <!-- Customize your theme here. -->
