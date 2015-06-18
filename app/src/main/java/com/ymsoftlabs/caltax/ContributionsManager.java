@@ -38,13 +38,14 @@ public class ContributionsManager {
         int index = 0;
 
         if (salary < 100) return 0;
+        if (salary >= 9000) {
+            if (salary >= 35000) index = 27;
+            else index = (int) (((salary - 9000) / 1000) + 1.0);
 
-        if (salary < 9000) index = 0;
-        if (salary >= 35000 ) index = 27;
-        else index = (int)(((salary - 9000)/1000) + 1.0);
-
-        phcontribution = 100 + (12.5 * index);
-
+            phcontribution = 100 + (12.5 * index);
+        } else {
+            phcontribution = 100;
+        }
         if (payPeriod == 0) return phcontribution;
         else return  (phcontribution / 2);
     }

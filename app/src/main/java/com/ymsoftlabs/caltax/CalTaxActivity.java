@@ -31,6 +31,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
     double salary = 0;
     double taxableAllowance = 0;
     double totalIncome = 0;
+    double shieldedAllowance = 0;
 
     double sssCont = 0;
     double phCont = 0;
@@ -133,8 +134,15 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
                     taxableAllowance = 0;
                 }
 
+                String shielded = shieldedEditTextView.getText().toString();
+                if (shielded != null && !shielded.isEmpty()){
+                    shieldedAllowance = Double.parseDouble(shielded);
+                } else {
+                    shieldedAllowance = 0;
+                }
+
                 totalIncome = salary + taxableAllowance;
-                setContributions(totalIncome, employmentType, paymentPeriod);
+                setContributions((totalIncome + shieldedAllowance), employmentType, paymentPeriod);
             }
 
             @Override
@@ -144,6 +152,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
 
         salaryEditTextView.addTextChangedListener(watch);
         taxAllowanceTextView.addTextChangedListener(watch);
+        shieldedEditTextView.addTextChangedListener(watch);
 
         dialogBuilder = new AlertDialog.Builder(CalTaxActivity.this);
         dialogBuilder.setTitle("KalTax");
@@ -214,7 +223,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         if (result.equalsIgnoreCase("Married w/3 Dependent")) civilStatus = 8;
         if (result.equalsIgnoreCase("Married w/4 Dependent")) civilStatus = 9;
 
-        if (totalIncome > 0) setContributions(totalIncome, employmentType, paymentPeriod);
+        if (totalIncome > 0) setContributions((totalIncome + shieldedAllowance), employmentType, paymentPeriod);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
