@@ -31,7 +31,7 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
         setContentView(R.layout.activity_reverse_calc);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setLogo(R.drawable.icon_actionbar);
+        actionBar.setLogo(R.mipmap.ic_launcher);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
