@@ -37,7 +37,7 @@ public class ContributionsManager {
         double phcontribution = 0;
         int index = 0;
 
-        if (salary < 100) return 0;
+        if (salary <= 100) return 0;
         if (salary >= 9000) {
             if (salary >= 35000) index = 27;
             else index = (int) (((salary - 9000) / 1000) + 1.0);
