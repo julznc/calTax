@@ -144,8 +144,8 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
             takehome += step;
         }
 
-        dialogBuilder.setMessage("Para makapag-uwi ka ng Php " + salary + " kada buwan, kailangan" +
-                " mong sumahod ng: \n\nPhp " + takehome + "\n\nGood luck sa salary negotiation.");
+        dialogBuilder.setMessage("Para makapag-uwi ka ng Php " + String.format("%.02f", salary) + " kada buwan, kailangan" +
+                " mong sumahod ng: \n\nPhp " + String.format("%.02f", takehome) + "\n\nGood luck sa salary negotiation.");
 
         alert = dialogBuilder.create();
         alert.show();
