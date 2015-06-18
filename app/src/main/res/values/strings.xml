@@ -20,7 +20,8 @@
         <item>Married w/4 Dependent</item>
     </string-array>
     <string-array name="employment_array">
-        <item>Employed</item>
+        <item>Private Company</item>
+        <item>Government</item>
         <item>Self-Employed</item>
         <item>Voluntary</item>
         <item>OFW</item>

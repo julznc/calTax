@@ -31,8 +31,10 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
     double sssCont = 0;
     double phCont = 0;
     double pgCont = 0;
+    double gsisCont = 0;
 
     EditText sssEditTextView;
+    EditText gsisEditTextView;
     EditText phEditTextView;
     EditText pagibigEditTextView;
 
@@ -89,6 +91,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         status.setOnItemSelectedListener(this);
 
         sssEditTextView = (EditText) findViewById(R.id.sssContribution);
+        gsisEditTextView = (EditText) findViewById(R.id.gsisContribution);
         phEditTextView = (EditText) findViewById(R.id.philHealth);
         pagibigEditTextView = (EditText) findViewById(R.id.pagibig);
 
@@ -181,7 +184,8 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         if (result.equalsIgnoreCase("Monthly")) paymentPeriod = 0;
         if (result.equalsIgnoreCase("Semi-Monthly")) paymentPeriod = 1;
 
-        if (result.equalsIgnoreCase("Employed")) employmentType = 0;
+        if (result.equalsIgnoreCase("Private Company")) employmentType = 0;
+        if (result.equalsIgnoreCase("Government")) employmentType = 2;
         if (result.equalsIgnoreCase("Self-Employed")) employmentType = 1;
         if (result.equalsIgnoreCase("Voluntary")) employmentType = 1;
         if (result.equalsIgnoreCase("OFW")) employmentType = 1;
@@ -210,10 +214,17 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         sssCont = contributionsManager.sssContribution(salary, employment, payPeriod);
         phCont = contributionsManager.philhealthContribution(salary, payPeriod);
         pgCont = contributionsManager.pagIbigContribution(salary);
+        gsisCont = contributionsManager.gsisContribution(salary);
 
-        sssEditTextView.setText("" + sssCont);
-        phEditTextView.setText("" + phCont);
-        pagibigEditTextView.setText("" + pgCont);
+        if (employment == 2) {
+            gsisEditTextView.setText(String.format("%.02f", gsisCont));
+            sssEditTextView.setText("");
+        } else {
+            sssEditTextView.setText(String.format("%.02f", sssCont));
+            gsisEditTextView.setText("");
+        }
+        phEditTextView.setText(String.format("%.02f", phCont));
+        pagibigEditTextView.setText(String.format("%.02f", pgCont));
     }
 
     public void calTax(View view){
@@ -252,6 +263,10 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         String pagibig = pagibigEditTextView.getText().toString();
         if (!pagibig.isEmpty()) pg = Double.parseDouble(pagibig);
 
+        double gsis = 0;
+        String gsisString = gsisEditTextView.getText().toString();
+        if (!gsisString.isEmpty()) gsis = Double.parseDouble(gsisString);
+
         double hmo = 0;
         String hmoPay = hmoEditTextView.getText().toString();
         if (!hmoPay.isEmpty()) hmo = Double.parseDouble(hmoPay);
@@ -272,7 +287,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         String shielded = shieldedEditTextView.getText().toString();
         if (!shielded.isEmpty()) sh = Double.parseDouble(shielded);
 
-        deductions = ss + ph + pg + hmo + ab + tad + ut + sh;
+        deductions = ss + gsis + ph + pg + hmo + ab + tad + ut + sh;
 
         double totalTaxable = totalIncome - deductions;
         taxBracketing calTax = new taxBracketing();
@@ -283,7 +298,10 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         else
             tax = calTax.calTaxSemiMonthly(totalTaxable, civilStatus);
 
-        dialogBuilder.setMessage("Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay: \n\n Php " + String.format("%.02f", tax));
+        double takehome = totalTaxable - tax;
+        dialogBuilder.setMessage("Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay: \n\nPhp "
+                + String.format("%.02f", tax) + "\n\nKaya ang matitira na lang sa sahod mo ay: \n\nPhp "
+                + String.format("%.02f", takehome));
 
         alert = dialogBuilder.create();
         alert.show();

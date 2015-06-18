@@ -18,6 +18,8 @@ public class ContributionsManager {
         double contribution = 0;
         int index = 0;
 
+        if (employment == 2) return 0;
+
         if (salary < 1000) return 0;
         if (salary >= 15750) index = 30;
         else index = (int)(((salary - 1000)/500) + 0.5);

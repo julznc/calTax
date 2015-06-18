@@ -224,10 +224,26 @@
                 android:layout_height="30dp"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/philHealth"
+                android:id="@+id/gsisContribution"
                 android:background="#ffffffff"
                 android:paddingLeft="8dp"
                 android:layout_below="@+id/sssContribution"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:hint="GSIS Contribution"
+                android:typeface="sans"
+                android:layout_alignLeft="@+id/holiday"
+                android:layout_alignStart="@+id/holiday" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/philHealth"
+                android:background="#ffffffff"
+                android:paddingLeft="8dp"
+                android:layout_below="@+id/gsisContribution"
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:hint="Philhealth Contribution"
@@ -412,6 +428,18 @@
                 android:textColor="#ffffffff"
                 android:gravity="center_vertical"
                 android:layout_alignTop="@+id/sssContribution"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="GSIS:"
+                android:id="@+id/gsis"
+                android:textColor="#ffffffff"
+                android:gravity="center_vertical"
+                android:layout_alignTop="@+id/gsisContribution"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
