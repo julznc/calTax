@@ -1,6 +1,7 @@
 package com.ymsoftlabs.caltax;
 
 import android.app.AlertDialog;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,11 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reverse_calc);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.drawable.icon_actionbar);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         // Employment Type
         final Spinner employment = (Spinner) findViewById(R.id.employmentType);
@@ -71,6 +77,7 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_back) {
+            this.finish();
             return true;
         }
 
