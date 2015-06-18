@@ -25,7 +25,12 @@
         <item>Voluntary</item>
         <item>OFW</item>
     </string-array>
+    <string-array name="rev_employment_array">
+        <item>Private Company</item>
+        <item>Government</item>
+    </string-array>
 
     <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_unit_id">ca-app-pub-1002476730485776/7737877749</string>
+    <string name="title_activity_reverse_calc">ReverseCalcActivity</string>
 </resources>

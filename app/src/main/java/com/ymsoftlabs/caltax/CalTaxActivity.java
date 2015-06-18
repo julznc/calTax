@@ -2,6 +2,7 @@ package com.ymsoftlabs.caltax;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         setContentView(R.layout.activity_cal_tax);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setLogo(R.mipmap.ic_launcher);
+        actionBar.setLogo(R.drawable.icon_actionbar);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
@@ -164,6 +165,11 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
             alert = dialogBuilder.create();
             alert.show();
             return true;
+        }
+
+        if (id == R.id.action_mode){
+            Intent intent = new Intent(this, ReverseCalcActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
