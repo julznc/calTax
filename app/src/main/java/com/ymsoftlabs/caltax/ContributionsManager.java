@@ -51,4 +51,8 @@ public class ContributionsManager {
         if (salary > 1500) return 100;
         else return (salary * 0.01);
     }
+
+    public double gsisContribution(double salary){
+        return salary * 0.09;
+    }
 }
