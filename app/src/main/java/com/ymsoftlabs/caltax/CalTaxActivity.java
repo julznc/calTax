@@ -213,7 +213,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         ContributionsManager contributionsManager = new ContributionsManager();
         sssCont = contributionsManager.sssContribution(salary, employment, payPeriod);
         phCont = contributionsManager.philhealthContribution(salary, payPeriod);
-        pgCont = contributionsManager.pagIbigContribution(salary);
+        pgCont = contributionsManager.pagIbigContribution(salary, payPeriod);
         gsisCont = contributionsManager.gsisContribution(salary);
 
         if (employment == 2) {

@@ -49,9 +49,15 @@ public class ContributionsManager {
         else return  (phcontribution / 2);
     }
 
-    public double pagIbigContribution(double salary){
-        if (salary > 1500) return 100;
-        else return (salary * 0.01);
+    public double pagIbigContribution(double salary, int payPeriod){
+        double pg = 0;
+
+        if (salary > 5000) pg = 100;
+        else if (salary < 1500) pg = salary * 0.01;
+        else pg = salary * 0.02;
+
+        if (payPeriod == 0) return salary;
+        else return (pg/2);
     }
 
     public double gsisContribution(double salary){
