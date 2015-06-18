@@ -111,6 +111,7 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
 
     public void calTaxReverse(View view) {
         double salary = 0;
+        double gsis = 0;
         double sss = 0;
         double ph = 0;
         double pg = 0;
@@ -130,11 +131,16 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
 
         int i = 0;
         while (diff > 0.0001) {
-
-            sss = contributionsManager.sssContribution(takehome, employmentType, 0);
+            if (employmentType == 0){
+                sss = contributionsManager.sssContribution(takehome, employmentType, 0);
+                gsis = 0;
+            } else {
+                sss = 0;
+                gsis = contributionsManager.gsisContribution(takehome);
+            }
             ph = contributionsManager.philhealthContribution(takehome, 0);
             pg = contributionsManager.pagIbigContribution(takehome);
-            deduction = sss + ph + pg;
+            deduction = sss + ph + pg + gsis;
 
             totalTaxable = takehome - deduction;
             tax = calTax.calTaxMonthly(totalTaxable, civilStatus);
