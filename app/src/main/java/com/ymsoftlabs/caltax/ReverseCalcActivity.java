@@ -147,7 +147,7 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
                 gsis = contributionsManager.gsisContribution(takehome);
             }
             ph = contributionsManager.philhealthContribution(takehome, 0);
-            pg = contributionsManager.pagIbigContribution(takehome);
+            pg = contributionsManager.pagIbigContribution(takehome, 0);
             deduction = sss + ph + pg + gsis;
 
             totalTaxable = takehome - deduction;

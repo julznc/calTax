@@ -214,7 +214,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         if (result.equalsIgnoreCase("Married w/3 Dependent")) civilStatus = 8;
         if (result.equalsIgnoreCase("Married w/4 Dependent")) civilStatus = 9;
 
-        if (salary > 0) setContributions(salary, employmentType, paymentPeriod);
+        if (totalIncome > 0) setContributions(totalIncome, employmentType, paymentPeriod);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {

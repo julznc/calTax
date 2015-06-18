@@ -56,7 +56,7 @@ public class ContributionsManager {
         else if (salary < 1500) pg = salary * 0.01;
         else pg = salary * 0.02;
 
-        if (payPeriod == 0) return salary;
+        if (payPeriod == 0) return pg;
         else return (pg/2);
     }
 
