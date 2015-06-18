@@ -57,7 +57,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         setContentView(R.layout.activity_cal_tax);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setLogo(R.mipmap.ic_launcher);
+        actionBar.setLogo(R.drawable.icon_actionbar);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
