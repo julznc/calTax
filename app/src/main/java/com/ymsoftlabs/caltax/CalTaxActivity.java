@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +29,8 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
     int employmentType = 0;
     int civilStatus = 0;
     double salary = 0;
+    double taxableAllowance = 0;
+    double totalIncome = 0;
 
     double sssCont = 0;
     double phCont = 0;
@@ -118,11 +122,19 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
                 String input = salaryEditTextView.getText().toString();
                 if (input != null && !input.isEmpty()){
                     salary = Double.parseDouble(input);
-                    setContributions(salary, employmentType, paymentPeriod);
                 } else {
                     salary = 0;
-                    setContributions(salary, employmentType, paymentPeriod);
                 }
+
+                String allowance = taxAllowanceTextView.getText().toString();
+                if (allowance != null && !allowance.isEmpty()){
+                    taxableAllowance = Double.parseDouble(allowance);
+                } else {
+                    taxableAllowance = 0;
+                }
+
+                totalIncome = salary + taxableAllowance;
+                setContributions(totalIncome, employmentType, paymentPeriod);
             }
 
             @Override
@@ -131,6 +143,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         };
 
         salaryEditTextView.addTextChangedListener(watch);
+        taxAllowanceTextView.addTextChangedListener(watch);
 
         dialogBuilder = new AlertDialog.Builder(CalTaxActivity.this);
         dialogBuilder.setTitle("KalTax");
@@ -287,7 +300,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         String shielded = shieldedEditTextView.getText().toString();
         if (!shielded.isEmpty()) sh = Double.parseDouble(shielded);
 
-        deductions = ss + gsis + ph + pg + hmo + ab + tad + ut + sh;
+        deductions = ss + gsis + ph + pg + hmo + ab + tad + ut;
 
         double totalTaxable = totalIncome - deductions;
         taxBracketing calTax = new taxBracketing();
@@ -298,10 +311,15 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         else
             tax = calTax.calTaxSemiMonthly(totalTaxable, civilStatus);
 
-        double takehome = totalTaxable - tax;
-        dialogBuilder.setMessage("Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay: \n\nPhp "
-                + String.format("%.02f", tax) + "\n\nKaya ang matitira na lang sa sahod mo ay: \n\nPhp "
-                + String.format("%.02f", takehome));
+        double takehome = totalTaxable + sh - tax;
+        String strTax = "Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay:<br/><br/>"
+                + "<b>Php " + String.format("%.02f", tax) + "</b><br/>";
+        String strTakehome = "<br/>Kaya ang matitira na lang sa sahod mo ay:<br/><br/>"
+                + "<b>Php " + String.format("%.02f", takehome) + "</b><br/>";
+
+        Spanned strResult = Html.fromHtml(strTax + strTakehome);
+
+        dialogBuilder.setMessage(strResult);
 
         alert = dialogBuilder.create();
         alert.show();

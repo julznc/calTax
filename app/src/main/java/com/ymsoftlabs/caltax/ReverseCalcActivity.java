@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -156,8 +158,11 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
             takehome += step;
         }
 
-        dialogBuilder.setMessage("Para makapag-uwi ka ng Php " + String.format("%.02f", salary) + " kada buwan, kailangan" +
-                " mong sumahod ng: \n\nPhp " + String.format("%.02f", takehome) + "\n\nGood luck sa salary negotiation.");
+        String strTakehome = "Para makapag-uwi ka ng <b>Php " + String.format("%.02f", salary) + "</b> kada buwan,";
+        String strSalary = "kailangan mong sumahod ng: <br/><br/><b>Php " + String.format("%.02f", takehome) + "</b><br/><br/>";
+        String strMsg = "Good luck sa salary negotiation.";
+        Spanned strResult = Html.fromHtml(strTakehome + strSalary + strMsg);
+        dialogBuilder.setMessage( strResult );
 
         alert = dialogBuilder.create();
         alert.show();
