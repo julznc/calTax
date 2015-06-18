@@ -111,5 +111,4 @@
         ads:adUnitId="@string/banner_ad_unit_id2">
     </com.google.android.gms.ads.AdView>
 
-
 </RelativeLayout>
