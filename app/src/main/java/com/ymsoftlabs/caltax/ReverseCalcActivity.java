@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 public class ReverseCalcActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener {
 
@@ -59,6 +62,9 @@ public class ReverseCalcActivity extends ActionBarActivity implements AdapterVie
         dialogBuilder.setTitle("KalTax");
         dialogBuilder.setPositiveButton("Ok", null);
 
+        AdView mAdView = (AdView) findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
