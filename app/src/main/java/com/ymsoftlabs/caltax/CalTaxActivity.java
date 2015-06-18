@@ -283,7 +283,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         else
             tax = calTax.calTaxSemiMonthly(totalTaxable, civilStatus);
 
-        dialogBuilder.setMessage("Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay: \n\n Php " + tax );
+        dialogBuilder.setMessage("Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay: \n\n Php " + String.format("%.02f", tax));
 
         alert = dialogBuilder.create();
         alert.show();
