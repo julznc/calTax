@@ -316,6 +316,7 @@ public class CalTaxActivity extends ActionBarActivity implements  OnItemSelected
         String strTax = "Ang naKalTax sa sweldo mo na sana ay di sa corrupt na politiko mapunta ay:<br/><br/>"
                 + "<b>Php " + String.format("%.02f", tax) + "</b><br/>";
         String strTakehome = "<br/>Kaya ang matitira na lang sa sahod mo ay:<br/><br/>"
+        String strTakehome = "<br/>Kaya ang matitira na lang sa sahod mo ay:<br/><br/>"
                 + "<b>Php " + String.format("%.02f", takehome) + "</b><br/>";
 
         Spanned strResult = Html.fromHtml(strTax + strTakehome);
